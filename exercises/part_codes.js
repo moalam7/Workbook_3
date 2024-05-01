@@ -10,7 +10,7 @@ function getSupplier(code){
   //returns all characters before the :
   let semicolon = code.indexOf(":");
   let supplierCode = code.substring(0, semicolon);
-  //console.log(supplierCode);
+  // console.log(supplierCode);
   return supplierCode;
 }
 
@@ -26,7 +26,8 @@ function getProductSize(code){
 //returns all characters after the -
   let dash = code.indexOf("-");
   let productSize = code.substring(dash+1);
-  if
+  //Write down an if statement to differentiate between number and letter
+
   //console.log(productSize);
   return productSize;
 }
@@ -37,5 +38,10 @@ function getProductSize(code){
 
 function productCodeParser(code){
   console.log(`
-  ${code}   the ${getProductSize(code)} part ${}`);
+  ${code}   the ${getProductSize(code)} part ${getProductNumber(code)} is supplied by ${getSupplier(code)}`);
 }
+
+
+productCodeParser("ACME:123-L");
+// productCodeParser("DI:12345-M");
+productCodeParser("ACE:1-12");
