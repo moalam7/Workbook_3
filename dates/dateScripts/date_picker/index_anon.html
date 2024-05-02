@@ -19,12 +19,22 @@
         messageParagraph.innerText = dateInput.value;
       }
 
+      /*
+
       function init() {
         const displayButton = document.getElementById("displayButton");
         displayButton.onclick = displayDate;
       }
 
       window.onload = init;
+
+      */
+
+      //New anonymous function
+      window.onload = function () {
+        const displayButton = document.getElementById("displayButton");
+        displayButton.onclick = displayDate;
+      };
     </script>
   </body>
 </html>
