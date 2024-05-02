@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Car Rental</title>
+    <!-- Pico CSS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -17,7 +18,7 @@
             <input type="date" id="pickupDateInput" />
             <label for="numberOfDaysInput">Number of days</label>
             <input type="number" id="numberOfDaysInput" />
-            <button type="button">Estimate Total Cost</button>
+            <button type="button" id="estimateButtonPreOptions">Estimate Total Cost</button>
           </fieldset>
 
           <fieldset class="options">
@@ -28,7 +29,7 @@
             </label>
             <label for="gpsCheckbox">
               <input type="checkbox" id="gpsCheckbox" />
-              GPS ($2.95/day)
+              GPS ($4.95/day)
             </label>
             <label for="roadsideCheckbox">
               <input type="checkbox" id="roadsideCheckbox" />
@@ -36,18 +37,106 @@
             </label>
           </fieldset>
 
-          <br />
-
-          <h5>Under 25</h5>
-
-          <ul class="no-bullets">
-            <li>Car Rental: <span>xxx.xx</span></li>
-            <li>Options: <span>xxx.xx</span></li>
-            <li>Under 25 Surcharge: <span>xxx.xx</span></li>
-            <li>Total Due: <span>xxx.xx</span></li>
-          </ul>
+          <fieldset>
+            <legend>Under 25</legend>
+            <input type="radio" name="under25" id="under25No" />
+            <label for="under25No">No</label>
+            <input type="radio" name="under25" id="under25Yes" />
+            <label for="under25Yes">Yes</label>
+          </fieldset>
+          <button type="button" id="estimateButtonPostOptions">Estimate Total Cost</button>
+          <table class="totals">
+            <tbody>
+              <tr>
+                <td>Car rental:</td>
+                <td id="carRentalTotalTD">xxx.xx</td>
+              </tr>
+              <tr>
+                <td>Options:</td>
+                <td id="optionsTotalTD">xx.xx</td>
+              </tr>
+              <tr>
+                <td>Under 25 surcharge:</td>
+                <td id="under25TotalTD">xx.xx</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total due:</td>
+                <td id="totalTD">xxx.xx</td>
+              </tr>
+            </tfoot>
+          </table>
         </form>
       </article>
     </main>
+
+    <script>
+      "use strict";
+      window.onload = function init() {
+        // load all the elements that we want information from and to manipulate
+
+        //Total cost elements
+        const pickupDateInput = document.getElementById("pickupDateInput");
+        const numberOfDaysInput = document.getElementById("numberOfDaysInput");
+
+        //Button elements
+        const estimateButtonPreOptions = document.getElementById("estimateButtonPreOptions");
+        const estimateButtonPostOptions = document.getElementById("estimateButtonPostOptions");
+
+        //Option checkbox elements and Under25 radio button element
+        //const tollTagCheckbox = document.getElementById("tollTagCheckbox");
+        //const gpsCheckbox = document.getElementById("gpsCheckbox");
+        //const roadsideCheckbox = document.getElementById("roadsideCheckbox");
+        const under25No = document.getElementById("under25No");
+        const under25Yes = document.getElementById("under25Yes");
+
+        //Table elements to manipulate after receiving user input
+        const carRentalTotalTD = document.getElementById("carRentalTotalTD");
+        const optionsTotalTD = document.getElementById("optionsTotalTD");
+        const under25TotalTD = document.getElementById("under25TotalTD");
+        const totalTD = document.getElementById("totalTD");
+
+        //define a function for the first estimate total cost, using the date and number of days
+
+        function estimate() {
+          //call the function above as well
+
+          //variable inside so it is set back to 0 everytime button is pressed/function is called
+          let extraPerDay = 0;
+
+          if (document.getElementById("tollTagCheckbox").checked) {
+            extraPerDay += 3.95;
+            console.log(`Toll Tag is Checked`);
+          }
+
+          if (document.getElementById("gpsCheckbox").checked) {
+            extraPerDay += 4.95;
+            console.log(`GPS is Checked`);
+          }
+
+          if (document.getElementById("roadsideCheckbox").checked) {
+            extraPerDay += 2.95;
+            console.log(`Roadside is Checked`);
+          }
+
+          console.log(extraPerDay);
+
+          if (under25Yes.checked) {
+            console.log(`Yes`);
+          }
+        }
+
+        estimateButtonPreOptions.onclick = estimate;
+        estimateButtonPostOptions.onclick = estimate;
+      };
+    </script>
+
+    <!-- hide table, and only when clicked estimate total cost button, does the table show!
+
+    can hide and show things on the web page using .display  -->
+
+    <!-- because radio buttons are together //page 85, querySelector -->
+    <!-- accessbility -- everything must have a label!  -->
   </body>
 </html>
