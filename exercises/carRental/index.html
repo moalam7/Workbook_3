@@ -77,6 +77,7 @@
 
     <script>
       "use strict";
+
       window.onload = function init() {
         // load all the elements that we want information from and to manipulate
         const pickupDateInput = document.getElementById("pickupDateInput");
@@ -91,8 +92,11 @@
         const totalsTable = document.getElementById("totalsTable");
 
         function estimate() {
-          //number of days can't be 0
-          if (numberOfDaysInput.value <= 0) {
+          //Error catching
+          if (pickupDateInput === "") {
+            window.alert("Please choose a date.");
+            return false;
+          } else if (numberOfDaysInput.value <= 0) {
             return window.alert("Minimum number of days must be 1");
           } else {
             //calculating using number of days
