@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ice Cream</title>
+    <!-- Pico CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main>
+      <article>
+        <h3>Order Ice Cream</h3>
+        <form>
+          <!-- # of Cones -->
+          <fieldset>
+            <label for="numberOfScoops">Number of scoops</label>
+            <input type="number" id="numberOfScoops" min="1" max="4" required />
+          </fieldset>
+          <!-- Cone or Cup Radio Buttons -->
+          <fieldset>
+            <input type="radio" name="" id="" />
+            <label for="">Cone</label>
+            <input type="radio" name="" id="" />
+            <label for="">Cup</label>
+          </fieldset>
+          <!-- Toppings Checkbox -->
+          <fieldset>
+            <legend></legend>
+            <input type="checkbox" id="" />
+            <label for="">Sprinkles ($.50)</label>
+            <input type="checkbox" id="" />
+            <label for="">Whiped Cream ($.25)</label>
+            <input type="checkbox" id="" />
+            <label for="">Hot Fudge($1.25)</label>
+            <input type="checkbox" id="" />
+            <label for="">Cherry($0.25)</label>
+          </fieldset>
+
+          <!-- Button -->
+          <button id="">Submit Order</button>
+
+          <!-- Table -->
+          <table id="priceBreakdown">
+            <tbody>
+              <tr>
+                <td>Base Price:</td>
+                <td id="basePriceTD"></td>
+              </tr>
+              <tr>
+                <td>Tax:</td>
+                <td id="taxAmountTD"></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Total Due:</td>
+                <td id="totalDueTD"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </form>
+      </article>
+    </main>
+
+    <script src="scripts/ice_cream.js"></script>
+  </body>
+</html>
